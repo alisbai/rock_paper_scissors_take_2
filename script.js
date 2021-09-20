@@ -15,7 +15,7 @@ function playerPlay() {
     }
     return selection;
 };
-// A function that plays one single round.
+// A function that plays one single round and keeps count of the winner of each round.
 function playRound(playerSelection, computerSelection) {
     let upperCasePlayerSelection = playerSelection.toUpperCase();
     let upperCaseComputerSelection = computerSelection.toUpperCase();
@@ -57,10 +57,21 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 };
-// A function that plays 5 rounds and returns the winner.
+// A function that plays 5 rounds and returns the winner and zeros the wins counts;
 function game() {
     for(let i = 0; i < 5; i++) {
         playRound(playerPlay(), computerPlay());
     }
-    return playerWinsCount > computerWinsCount ? 'You won the game, Congratulations!' : playerWinsCount < computerWinsCount ? 'You lost the game, better luck next time :(' : 'It\'s a draw for the whole game';
+    if(playerWinsCount > computerWinsCount) {
+        playerWinsCount = computerWinsCount = 0;
+        return 'You won the game, Congratulations!';
+    }
+    else if(playerWinsCount < computerWinsCount) {
+        playerWinsCount = computerWinsCount = 0;
+        return 'You lost the game, better luck next time :(';
+    }
+    else {
+        playerWinsCount = computerWinsCount = 0;
+        return 'It\'s a draw for the whole game.'
+    }
 }
