@@ -5,9 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors Take 2</title>
 </head>
 <body>
-    
+    <!-- First popup -->
+    <div id="popUpStart">
+        <h2>Are you ready to play Rock Paper Scissors?</h2>
+        <div id="buttonsWrapper">
+            <button class="startButtons" id="yesButton"> YES!</button>
+            <button class="startButtons" id="ofCourseButton">Of Course YES!</button>
+        </div>
+    </div>
+    <div id="popUpChoose">
+        <h1>Choose your player</h1>
+        <div id="playersMenu">
+            <div id="playerAliSection">
+                <div id="playerAliImage" class="playersImage"><img src="images/choose_player_ali.png" alt="ali's photo"></div>
+                <div id="PlayerAliName" class="playersName"><h3>ALI</h3></div>
+            </div>
+            <div id="playerOumaymaSection">
+                <div id="playerOumaymaImage" class="playersImage"><img src="images/choose_player_oumayma.png" alt="oumayma's photo"></div>
+                <div id="playerOumaymaName" class="playersName"><h3>OUMAYMA</h3></div>
+            </div>
+        </div>
+    </div>
+    <audio src="audios/Haviitz_SixFeet_Drum_4bar_16th note_87bpm-87-Fminor.wav" id="backgroundBeat" loop></audio>
 </body>
 </html>

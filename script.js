@@ -1,3 +1,4 @@
+//// GAME LOGIC.    
 let playerWinsCount = 0;
 let computerWinsCount = 0;
 
@@ -74,4 +75,23 @@ function game() {
         playerWinsCount = computerWinsCount = 0;
         return 'It\'s a draw for the whole game.'
     }
+}
+
+//// DOM MANIPULATION.   
+
+let startButtons = document.querySelectorAll('.startButtons');
+startButtons.forEach(button => {
+    button.addEventListener('click', startGame)
+})
+
+function startGame() {
+    let popUpStart = document.getElementById('popUpStart');
+    popUpStart.remove();
+    playMusic();
+    
+}
+
+function playMusic() {
+    const backgroundBeat = document.getElementById('backgroundBeat');
+    backgroundBeat.play();
 }
