@@ -1,4 +1,7 @@
-//// GAME LOGIC.    
+//// GAME LOGIC.  
+const characters = ['ALI', 'OUMAYMA']; 
+let playerCharacter = '';
+let opponentCharacter = '';
 let playerWinsCount = 0;
 let computerWinsCount = 0;
 
@@ -81,10 +84,10 @@ function game() {
 
 let startButtons = document.querySelectorAll('.startButtons');
 startButtons.forEach(button => {
-    button.addEventListener('click', startGame)
+    button.addEventListener('click', removePopUpStart)
 })
 
-function startGame() {
+function removePopUpStart() {
     let popUpStart = document.getElementById('popUpStart');
     popUpStart.remove();
     playMusic();
@@ -94,4 +97,34 @@ function startGame() {
 function playMusic() {
     const backgroundBeat = document.getElementById('backgroundBeat');
     backgroundBeat.play();
+    choosePlayers()
+}
+
+function choosePlayers() {
+    let characters = document.querySelectorAll('.players img');
+    characters.forEach(character => 
+        character.addEventListener('click', registerCharacters))
+}
+
+function registerCharacters(e) {
+        if(!playerCharacter) {
+            playerCharacter = e.target.getAttribute('data-name');
+            e.target.removeEventListener('click', registerCharacters);
+            e.target.setAttribute('class', 'selectedCharacter');
+            let chooseHeader = document.querySelector('#popUpChoose h1');
+            chooseHeader.textContent = 'Choose your opponent\'s character';
+        }
+        else {
+            opponentCharacter = e.target.getAttribute('data-name');
+            e.target.removeEventListener('click', registerCharacters);
+            e.target.setAttribute('class', 'selectedCharacter');
+            removePopUpChoose();
+        }
+}
+
+// this function removes the popUpChoose div to reveal the duel.
+
+function removePopUpChoose() {
+    let popUpChoose = document.getElementById('popUpChoose');
+    popUpChoose.remove();
 }
