@@ -1,3 +1,5 @@
+let paraPlayerWins = document.querySelector('#playersScoreWrapper p')
+let paraComputerWins = document.querySelector('#opponentsScoreWrapper p')
 //// GAME LOGIC.  
 const characters = ['ALI', 'OUMAYMA']; 
 let playerCharacter = '';
@@ -14,24 +16,36 @@ function computerPlay() {
 // A function that returns the user's choice
 function playerPlay() {
     let selection = prompt('Select either Rock, Paper or Scissors.');
+    console.log(selection);
     while(selection.toUpperCase() !== 'ROCK' && selection.toUpperCase() !== 'SCISSORS' && selection.toUpperCase() !== 'PAPER') {
         selection = prompt('You have entered an invalid choice, please try again.')
     }
     return selection;
 };
+
 // A function that plays one single round and keeps count of the winner of each round.
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    let info = document.getElementById('info');
+    info.textContent = '';
+    let computerSelection = computerPlay();
     let upperCasePlayerSelection = playerSelection.toUpperCase();
     let upperCaseComputerSelection = computerSelection.toUpperCase();
     if(upperCaseComputerSelection === 'ROCK') {
         switch(upperCasePlayerSelection) {
             case 'ROCK': 
+            console.log('draw');
+            info.textContent = 'It\'s at tie!!'
             return 'Draw for this round! Both players chose Rock.';
             case 'PAPER':
-            playerWinsCount++; 
+                playerWinsCount++; 
+                paraPlayerWins.textContent = 'Your score: ' + playerWinsCount;
+            console.log('you won')
             return 'You won this round! Paper beats Rock.';
             case 'SCISSORS': 
+            console.log('you lost')
             computerWinsCount++;
+            paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
+            
             return 'You lost this round! Scissors loses against Rock.' 
         }
     }
@@ -39,11 +53,14 @@ function playRound(playerSelection, computerSelection) {
         switch(upperCasePlayerSelection) {
             case 'ROCK': 
             computerWinsCount++;
+            paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
             return 'You lost this round! Rock loses against Paper.';
             case 'PAPER': 
+            info.textContent = 'It\'s at tie!!'
             return 'Draw draw for this round! Both players chose Paper.';
             case 'SCISSORS':
-            playerWinsCount++; 
+                playerWinsCount++;
+            paraPlayerWins.textContent = 'Your score: ' + playerWinsCount; 
             return 'You won this round! Scissors beats Paper.' 
         }
     }
@@ -51,33 +68,55 @@ function playRound(playerSelection, computerSelection) {
     else {
         switch(upperCasePlayerSelection) {
             case 'ROCK':
-            playerWinsCount++; 
+            playerWinsCount++;
+            paraPlayerWins.textContent = 'Your score: ' + playerWinsCount; 
             return 'You won this round! Rock beats Scissors.';
             case 'PAPER': 
             computerWinsCount++;
+            paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
             return 'You lost this round! Paper loses against Scissors.';
             case 'SCISSORS': 
+            info.textContent = 'It\'s at tie!!'
             return 'Draw for this round! Both players chose Paper.' 
         }
     }
 };
 // A function that plays 5 rounds and returns the winner and zeros the wins counts;
-function game() {
-    for(let i = 0; i < 5; i++) {
-        playRound(playerPlay(), computerPlay());
-    }
-    if(playerWinsCount > computerWinsCount) {
-        playerWinsCount = computerWinsCount = 0;
-        return 'You won the game, Congratulations!';
-    }
-    else if(playerWinsCount < computerWinsCount) {
-        playerWinsCount = computerWinsCount = 0;
-        return 'You lost the game, better luck next time :(';
+function game(id) {
+    if(playerWinsCount + computerWinsCount > 5){
+        return
     }
     else {
-        playerWinsCount = computerWinsCount = 0;
-        return 'It\'s a draw for the whole game.'
+        playRound(id)
+        if(playerWinsCount + computerWinsCount < 5) {
+            return
+        }
+        else {
+            setTimeout(() => {
+                if(playerWinsCount > computerWinsCount) {
+                    playerWinsCount = computerWinsCount = 0;
+                    paraPlayerWins.textContent = 'Your score: ' + playerWinsCount; 
+                    paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
+                    return 'You won the game, Congratulations!';
+                }
+                else if(playerWinsCount < computerWinsCount) {
+                    playerWinsCount = computerWinsCount = 0;
+                    paraPlayerWins.textContent = 'Your score: ' + playerWinsCount; 
+                    paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
+                    return 'You lost the game, better luck next time :(';
+                }
+                else {
+                    playerWinsCount = computerWinsCount = 0;
+                    paraPlayerWins.textContent = 'Your score: ' + playerWinsCount; 
+                    paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
+                    return 'It\'s a draw for the whole game.'
+                }
+            }, 1000)
+        }
     }
+    // for(let i = 0; i < 5; i++) {
+        //     playRound(playerPlay());
+    // }
 }
 
 //// DOM MANIPULATION.   
@@ -104,9 +143,9 @@ function choosePlayers() {
     let characters = document.querySelectorAll('.players img');
     characters.forEach(character => 
         character.addEventListener('click', registerCharacters))
-}
+    }
 
-function registerCharacters(e) {
+    function registerCharacters(e) {
         if(!playerCharacter) {
             playerCharacter = e.target.getAttribute('data-name');
             e.target.removeEventListener('click', registerCharacters);
@@ -119,12 +158,18 @@ function registerCharacters(e) {
             e.target.removeEventListener('click', registerCharacters);
             e.target.setAttribute('class', 'selectedCharacter');
             removePopUpChoose();
+            tester();
         }
-}
+    }
+    
+    // this function removes the popUpChoose div to reveal the duel.
 
-// this function removes the popUpChoose div to reveal the duel.
-
-function removePopUpChoose() {
-    let popUpChoose = document.getElementById('popUpChoose');
-    popUpChoose.remove();
+    function removePopUpChoose() {
+        let popUpChoose = document.getElementById('popUpChoose');
+        popUpChoose.remove();
+    }
+    
+function tester() {
+    let s = document.querySelectorAll('.symbols');
+    s.forEach(s => s.addEventListener('click', e => game(e.target.id)))
 }
