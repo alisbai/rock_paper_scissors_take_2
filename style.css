@@ -172,7 +172,14 @@ h1 {
     font-size: 1.8rem;
     width: 100%;
     margin: 0 auto;
-    margin-top: 16px;
+    margin-top: 50px;
+}
+
+#duel {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #duelStage {
