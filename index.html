@@ -21,13 +21,38 @@
     <div id="popUpChoose">
         <h1>Choose your character</h1>
         <div id="playersMenu">
-            <div id="playerAliSection" class="players">
+            <!-- <div id="playerAliSection" class="players">
                 <div id="playerAliImage" class="playersImage"><img src="images/choose_player_ali.png" alt="ali's photo" data-name="ALI"></div>
                 <div id="PlayerAliName" class="playersName"><h3>ALI</h3></div>
             </div>
             <div id="playerOumaymaSection" class="players">
                 <div id="playerOumaymaImage" class="playersImage"><img src="images/choose_player_oumayma.png" alt="oumayma's photo" data-name="OUMAYMA"></div>
                 <div id="playerOumaymaName" class="playersName"><h3>OUMAYMA</h3></div>
+            </div> -->
+            <!-- //////////////////////////////////////////////////// -->
+            <div id="playerLeilaSection" class="players">
+                <div id="playerLeilaImage" class="playersImage"><img src="images/leila_default.png" alt="leila's photo" data-name="leila"></div>
+                <div id="playerLeilaName" class="playersName"><h3>LEILA</h3></div>
+            </div>
+            <div id="playerHammamSection" class="players">
+                <div id="playerHammamImage" class="playersImage"><img src="images/hammam_default.png" alt="hammam's photo" data-name="hammam"></div>
+                <div id="playerHammamName" class="playersName"><h3>HAMMAM</h3></div>
+            </div>
+            <div id="playerNijahSection" class="players">
+                <div id="playerNijahImage" class="playersImage"><img src="images/nijah_default.png" alt="nijah's photo" data-name="nijah"></div>
+                <div id="playerNijahName" class="playersName"><h3>NIJAH</h3></div>
+            </div>
+            <div id="playerZinebSection" class="players">
+                <div id="playerZinebImage" class="playersImage"><img src="images/zineb_default.png" alt="zineb's photo" data-name="zineb"></div>
+                <div id="playerZinebName" class="playersName"><h3>ZINEB</h3></div>
+            </div>
+            <div id="playerYoussefSection" class="players">
+                <div id="playerYoussefImage" class="playersImage"><img src="images/youssef_default.png" alt="youseef's photo" data-name="youssef"></div>
+                <div id="playerYoussefName" class="playersName"><h3>YOUSSEF</h3></div>
+            </div>
+            <div id="playerDrifSection" class="players">
+                <div id="playerDrifImage" class="playersImage"><img src="images/drif_default.png" alt="drif's photo" data-name="drif"></div>
+                <div id="playerDrifName" class="playersName"><h3>DRIF</h3></div>
             </div>
         </div>
     </div>
@@ -37,8 +62,16 @@
             <div id="playersScoreWrapper"class="scoresWrapper"><p>Your score: 0</p></div>
             <div id="opponentsScoreWrapper"class="scoresWrapper"><p>Opponent's score: 0</p></div>
         </div>
-        <p id="info"></p>
-        <div id="duelStage"></div>
+        <div id="infoWrapper">
+            <img src="images/vs.png" alt="vs logo">
+            <p id="info"></p>
+        </div>
+        <div id="duelStage">
+            <img src="" id="mainCharacterDuel"alt="Your character">
+            <div id="reverserWrapper">
+                <img src="" id="opponentCharacterDuel" alt="Your opponent's character">
+            </div>
+        </div>
         <div id="selections">
             <img src="images/rock_logo.png" alt="rock" id="rock" class="symbols">
             <img src="images/paper_logo.png" alt="paper" id="paper" class="symbols">
@@ -46,5 +79,8 @@
         </div>
     </div>
     <audio src="audios/Haviitz_SixFeet_Drum_4bar_16th note_87bpm-87-Fminor.wav" id="backgroundBeat" loop></audio>
+    <audio src="audios/swoosh.mp3" id="swoosh"></audio> 
+    <audio src="audios/victory_audio.mp3" id="winningAudio"></audio>
+    <audio src="audios/losing_audio.wav" id="losingAudio"></audio>
 </body>
 </html>

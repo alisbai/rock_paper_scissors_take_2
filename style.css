@@ -95,7 +95,7 @@ body {
     padding: 10px 7px;
     margin: auto 10px;
     width: 200px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: rgb(255, 255, 255);
     background-color: rgb(0, 216, 115);
@@ -123,12 +123,11 @@ h1 {
 }
 #playersMenu {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: scroll;
 }
 
-#playersMenu > div {
-    margin: auto 10px;
-} 
 
 #playersMenu > div:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -142,10 +141,17 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top: 60px;
 }
 
 #selections img {
     max-width: 25%;
+}
+
+@media (min-width: 500px) {
+    #selections img {
+        max-width: 100px;
+    }
 }
 
 #scores {
@@ -154,10 +160,27 @@ h1 {
     margin-bottom: 30px;
     font-size: 1.4rem;
 }
-
+#infoWrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 0;
+    top: 270px;
+}
 #info {
     font-size: 1.8rem;
-    position: absolute;
     width: 100%;
     margin: 0 auto;
+    margin-top: 16px;
+}
+
+#duelStage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.horizontalFlip {
+    transform: scaleX(-1);
+    z-index: -1;
 }
