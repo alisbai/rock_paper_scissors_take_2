@@ -122,10 +122,8 @@ function game(playerSelection) {
             let playAgainButton = document.createElement('button')
         }
     }
-    // for(let i = 0; i < 5; i++) {
-        //     playRound(playerPlay());
-    // }
-}
+    
+}    
 
 //// DOM MANIPULATION.   
 
@@ -173,13 +171,12 @@ function chooseCharacter() {
             initGame();
         }
     }
-    
-    // this function removes the popUpChoose div to reveal the duel.
+// this function removes the popUpChoose div to reveal the duel.
 
-    function removePopUpChoose() {
-        let popUpChoose = document.getElementById('popUpChoose');
-        popUpChoose.remove();
-    }
+function removePopUpChoose() {
+    let popUpChoose = document.getElementById('popUpChoose');
+    popUpChoose.remove();
+}
     
 function initGame() {
     symbols.forEach(s => s.addEventListener('click', e => game(e.target.id)))
