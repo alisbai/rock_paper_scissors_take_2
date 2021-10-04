@@ -8,7 +8,6 @@ const losingAudio = document.getElementById('losingAudio');
 const winningAudio = document.getElementById('winningAudio');
 let symbols = document.querySelectorAll('.symbols');
 //// GAME LOGIC.  
-const characters = ['ALI', 'OUMAYMA']; 
 let playerCharacter = '';
 let opponentCharacter = '';
 let playerWinsCount = 0;
@@ -119,7 +118,6 @@ function game(playerSelection) {
                 paraComputerWins.textContent = 'Opponent\'s score: ' + computerWinsCount;
                 info.textContent = 'It\'s a draw for the whole game. Please refresh the page to paly again.'
             }
-            let playAgainButton = document.createElement('button')
         }
     }
     
@@ -171,13 +169,13 @@ function chooseCharacter() {
             initGame();
         }
     }
-// this function removes the popUpChoose div to reveal the duel.
+// this function removes the popUpChoose div to reveal the duel stage.
 
 function removePopUpChoose() {
     let popUpChoose = document.getElementById('popUpChoose');
     popUpChoose.remove();
 }
-    
+// this function initiates the game by enabling the click event on the rock, paper, and scissors symbols.
 function initGame() {
     symbols.forEach(s => s.addEventListener('click', e => game(e.target.id)))
 }
